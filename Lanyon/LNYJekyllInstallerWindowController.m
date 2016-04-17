@@ -70,7 +70,7 @@
 		NSString	*	outputAsString = nil;
 		outputAsString = [[NSString alloc] initWithData: errOutput ? errOutput : output encoding:NSUTF8StringEncoding];
 		NSMutableAttributedString	*	outputAttrStr = [[NSMutableAttributedString alloc] initWithString:outputAsString attributes: @{ NSFontAttributeName: [NSFont userFixedPitchFontOfSize: 10.0], NSForegroundColorAttributeName: (output ? [NSColor blackColor] : [NSColor redColor]) }];
-		[self.gemInstallTaskOutputField.textStorage performSelectorOnMainThread: @selector(setAttributedString:) withObject: outputAttrStr waitUntilDone: NO];
+		[self.gemInstallTaskOutputField.textStorage performSelectorOnMainThread: @selector(appendAttributedString:) withObject: outputAttrStr waitUntilDone: NO];
 	}];
 	
 	NSPipe*		inputPipe = [NSPipe pipe];

@@ -47,21 +47,24 @@
 {
 	self.gemInstallTask = [NSTask taskWithLaunchPath: @"/usr/bin/sudo" arguments: @[ @"-S", @"gem", @"install", @"jekyll" ] terminationHandlerWithOutput: ^( NSTask* _Nonnull sender, NSData* _Nonnull output, NSData* _Nonnull errOutput )
 	{
-		NSLog(@"%@ %@", output, errOutput);
 		NSString	*	outputAsString = [[NSString alloc] initWithData: output encoding: NSUTF8StringEncoding];
-		[self.gemInstallTaskOutputField performSelectorOnMainThread: @selector(setString:) withObject: outputAsString waitUntilDone: NO];
+		NSMutableAttributedString	*	outputAttrStr = [[NSMutableAttributedString alloc] initWithString:outputAsString attributes: @{ NSFontAttributeName: [NSFont userFixedPitchFontOfSize: 10.0], NSForegroundColorAttributeName: [NSColor blackColor] }];
+		
+		outputAsString = [[NSString alloc] initWithData: errOutput encoding: NSUTF8StringEncoding];
+		NSAttributedString	*	errOutputAttrStr = [[NSAttributedString alloc] initWithString:outputAsString attributes: @{ NSFontAttributeName: [NSFont userFixedPitchFontOfSize: 10.0], NSForegroundColorAttributeName: [NSColor redColor] }];
+		[outputAttrStr.mutableString appendString: @"\n\n"];
+		[outputAttrStr appendAttributedString: errOutputAttrStr];
+		
+		[self.gemInstallTaskOutputField.textStorage performSelectorOnMainThread: @selector(setAttributedString:) withObject: outputAttrStr waitUntilDone: NO];
+		
 		[self performSelectorOnMainThread: @selector(concludeInstallation) withObject: nil waitUntilDone: NO];
-		NSLog(@"done.");
 	}
 	progressHandler:^(NSTask * _Nullable sender, NSData * _Nullable output, NSData * _Nullable errOutput)
 	{
 		NSString	*	outputAsString = nil;
 		outputAsString = [[NSString alloc] initWithData: errOutput ? errOutput : output encoding:NSUTF8StringEncoding];
-		NSLog(@"%s: %@", (errOutput ? "ERR" : "OUT"), outputAsString);
-		if( output )
-		{
-			[self.gemInstallTaskOutputField.textStorage.mutableString performSelectorOnMainThread: @selector(appendString:) withObject: outputAsString waitUntilDone: NO];
-		}
+		NSMutableAttributedString	*	outputAttrStr = [[NSMutableAttributedString alloc] initWithString:outputAsString attributes: @{ NSFontAttributeName: [NSFont userFixedPitchFontOfSize: 10.0], NSForegroundColorAttributeName: (output ? [NSColor blackColor] : [NSColor redColor]) }];
+		[self.gemInstallTaskOutputField.textStorage performSelectorOnMainThread: @selector(setAttributedString:) withObject: outputAttrStr waitUntilDone: NO];
 	}];
 	
 	NSPipe*		inputPipe = [NSPipe pipe];

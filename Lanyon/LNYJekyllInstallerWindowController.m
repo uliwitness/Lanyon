@@ -45,6 +45,12 @@
 
 -(IBAction)	startGemInstallTask: (id)sender
 {
+	/*
+		Skanky hack: We need to install jekyll using sudo. So instead of running it directly,
+		we run sudo -S and pass "gem install jekyll" as the parameters. -S means "take the password
+		from stdin. So we ask the user for their password and pipe it into sudo.
+	*/
+	
 	self.gemInstallTask = [NSTask taskWithLaunchPath: @"/usr/bin/sudo" arguments: @[ @"-S", @"gem", @"install", @"jekyll" ] terminationHandlerWithOutput: ^( NSTask* _Nonnull sender, NSData* _Nonnull output, NSData* _Nonnull errOutput )
 	{
 		NSString	*	outputAsString = [[NSString alloc] initWithData: output encoding: NSUTF8StringEncoding];

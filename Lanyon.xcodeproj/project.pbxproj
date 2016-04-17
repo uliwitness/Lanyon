@@ -79,6 +79,7 @@
 			children = (
 				551E0D981CC3C53C008B80E1 /* LNYAppDelegate.h */,
 				551E0D991CC3C53C008B80E1 /* LNYAppDelegate.m */,
+				551E0DA61CC3C53C008B80E1 /* MainMenu.xib */,
 				551E0D9E1CC3C53C008B80E1 /* LNYJekyllFolderDocument.h */,
 				551E0D9F1CC3C53C008B80E1 /* LNYJekyllFolderDocument.m */,
 				551E0DA11CC3C53C008B80E1 /* LNYJekyllFolderDocument.xib */,
@@ -94,7 +95,6 @@
 				551E0DB21CC3C9C7008B80E1 /* NSTask+ULIReadOutput.h */,
 				551E0DB31CC3C9C7008B80E1 /* NSTask+ULIReadOutput.m */,
 				551E0DA41CC3C53C008B80E1 /* Assets.xcassets */,
-				551E0DA61CC3C53C008B80E1 /* MainMenu.xib */,
 				551E0DA91CC3C53C008B80E1 /* Info.plist */,
 				551E0DB51CC3CEFF008B80E1 /* LNYInitialDefaults.plist */,
 				551E0D9B1CC3C53C008B80E1 /* Supporting Files */,

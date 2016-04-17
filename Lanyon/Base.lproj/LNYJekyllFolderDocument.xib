@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="LNYJekyllFolderDocument">
             <connections>
+                <outlet property="toolOutputField" destination="wCb-Wu-zIf" id="rHQ-lS-VrH"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>
@@ -42,11 +43,45 @@
                             <action selector="revealInFinder:" target="-2" id="Y1b-6Q-Nn4"/>
                         </connections>
                     </button>
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ktc-yx-jKj">
+                        <rect key="frame" x="-1" y="-1" width="509" height="135"/>
+                        <clipView key="contentView" id="BnO-Wg-rY0">
+                            <rect key="frame" x="1" y="1" width="507" height="133"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="wCb-Wu-zIf">
+                                    <rect key="frame" x="0.0" y="0.0" width="507" height="133"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="507" height="133"/>
+                                    <size key="maxSize" width="512" height="10000000"/>
+                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="minSize" width="507" height="133"/>
+                                    <size key="maxSize" width="512" height="10000000"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="135" id="JwL-pt-7yX"/>
+                        </constraints>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="jvV-Aw-O08">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="oUb-lw-YAW">
+                            <rect key="frame" x="492" y="1" width="16" height="133"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="VbB-9H-ZiR" firstAttribute="centerX" secondItem="gIp-Ho-8D9" secondAttribute="centerX" id="0SO-FO-EId"/>
                     <constraint firstItem="U2p-Ks-Vho" firstAttribute="centerX" secondItem="gIp-Ho-8D9" secondAttribute="centerX" id="Iu8-57-24E"/>
+                    <constraint firstAttribute="bottom" secondItem="ktc-yx-jKj" secondAttribute="bottom" constant="-1" id="JCm-la-7UM"/>
+                    <constraint firstAttribute="trailing" secondItem="ktc-yx-jKj" secondAttribute="trailing" constant="-1" id="M3k-2t-YS9"/>
                     <constraint firstItem="U2p-Ks-Vho" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="gvT-Na-c0d"/>
+                    <constraint firstItem="ktc-yx-jKj" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="-1" id="vC6-f9-Mv9"/>
                     <constraint firstItem="VbB-9H-ZiR" firstAttribute="top" secondItem="U2p-Ks-Vho" secondAttribute="bottom" constant="12" id="vmu-vT-4KW"/>
                 </constraints>
             </view>

@@ -12,8 +12,9 @@
 
 @interface LNYJekyllFolderDocument ()
 
-@property (strong) NSTask*	projectCreationTask;
-@property (strong) NSTask*	projectBuildTask;
+@property (strong) IBOutlet NSTextView*		toolOutputField;
+@property (strong) NSTask*					projectCreationTask;
+@property (strong) NSTask*					projectBuildTask;
 
 @end
 
@@ -54,14 +55,22 @@
 	{
 		if( !self.projectCreationTask )
 		{
+			NSAttributedString	*	operationHeadingAttrStr = [[NSAttributedString alloc] initWithString: @"\n========== Initializing new project: ==========\n" attributes: @{ NSFontAttributeName: [NSFont userFixedPitchFontOfSize: 10.0], NSForegroundColorAttributeName: [NSColor colorWithCalibratedRed:0.057 green:0.437 blue:0.192 alpha:1.000] }];
+			[self.toolOutputField.textStorage appendAttributedString: operationHeadingAttrStr];
+			
 			NSString	*	jekyllPath = [[NSUserDefaults standardUserDefaults] objectForKey: @"LNYJekyllPath"];
 			NSString	*	projectName = url.lastPathComponent;
 			self.projectCreationTask = [NSTask taskWithLaunchPath: jekyllPath arguments: @[@"new", projectName] terminationHandlerWithOutput:^(NSTask * _Nonnull sender, NSData * _Nonnull output, NSData * _Nonnull errOutput)
 			{
-				NSString*	outputStr = [[NSString alloc] initWithData: output encoding:NSUTF8StringEncoding];
-				NSString*	errStr = [[NSString alloc] initWithData: errOutput encoding:NSUTF8StringEncoding];
-				NSLog(@"%@\n%@\ndone.", outputStr, errStr);
-			} progressHandler: nil];
+				
+			}
+			progressHandler: ^(NSTask * _Nonnull sender, NSData * _Nullable output, NSData * _Nullable errOutput)
+			{
+				NSString	*	outputAsString = nil;
+				outputAsString = [[NSString alloc] initWithData: errOutput ? errOutput : output encoding:NSUTF8StringEncoding];
+				NSMutableAttributedString	*	outputAttrStr = [[NSMutableAttributedString alloc] initWithString:outputAsString attributes: @{ NSFontAttributeName: [NSFont userFixedPitchFontOfSize: 10.0], NSForegroundColorAttributeName: (output ? [NSColor blackColor] : [NSColor redColor]) }];
+				[self.toolOutputField.textStorage performSelectorOnMainThread: @selector(appendAttributedString:) withObject: outputAttrStr waitUntilDone: NO];
+			}];
 			NSString	*	dirPath = url.path.stringByDeletingLastPathComponent;
 			[self.projectCreationTask setCurrentDirectoryPath: dirPath];
 			[self.projectCreationTask launch];
@@ -105,14 +114,21 @@
 {
 	if( !self.projectBuildTask )
 	{
+		NSAttributedString	*	operationHeadingAttrStr = [[NSAttributedString alloc] initWithString: @"\n========== Building project: ==========\n" attributes: @{ NSFontAttributeName: [NSFont userFixedPitchFontOfSize: 10.0], NSForegroundColorAttributeName: [NSColor colorWithCalibratedRed:0.057 green:0.437 blue:0.192 alpha:1.000] }];
+		[self.toolOutputField.textStorage appendAttributedString: operationHeadingAttrStr];
+		
 		NSString	*	jekyllPath = [[NSUserDefaults standardUserDefaults] objectForKey: @"LNYJekyllPath"];
 		self.projectBuildTask = [NSTask taskWithLaunchPath: jekyllPath arguments: @[@"build"] terminationHandlerWithOutput:^(NSTask * _Nonnull sender, NSData * _Nonnull output, NSData * _Nonnull errOutput)
 		{
-			NSString*	outputStr = [[NSString alloc] initWithData: output encoding:NSUTF8StringEncoding];
-			NSString*	errStr = [[NSString alloc] initWithData: errOutput encoding:NSUTF8StringEncoding];
-			NSLog(@"%@\n%@\ndone.", outputStr, errStr);
 			self.projectBuildTask = nil;
-		} progressHandler: nil];
+		}
+		progressHandler: ^(NSTask * _Nonnull sender, NSData * _Nullable output, NSData * _Nullable errOutput)
+		{
+			NSString	*	outputAsString = nil;
+			outputAsString = [[NSString alloc] initWithData: errOutput ? errOutput : output encoding:NSUTF8StringEncoding];
+			NSMutableAttributedString	*	outputAttrStr = [[NSMutableAttributedString alloc] initWithString:outputAsString attributes: @{ NSFontAttributeName: [NSFont userFixedPitchFontOfSize: 10.0], NSForegroundColorAttributeName: (output ? [NSColor blackColor] : [NSColor redColor]) }];
+			[self.toolOutputField.textStorage performSelectorOnMainThread: @selector(appendAttributedString:) withObject: outputAttrStr waitUntilDone: NO];
+		}];
 		NSString	*	dirPath = self.fileURL.path;
 		[self.projectBuildTask setCurrentDirectoryPath: dirPath];
 		[self.projectBuildTask launch];

@@ -10,6 +10,7 @@
 
 @interface LNYJekyllFolderDocument : NSDocument
 
+-(IBAction)	buildProject: (id)sender;
 
 @end
 

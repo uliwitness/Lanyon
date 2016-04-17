@@ -52,20 +52,23 @@
 {
 	if( self.fileURL == nil || ![[NSFileManager defaultManager] fileExistsAtPath: self.fileURL.path] )
 	{
-		NSString	*	jekyllPath = [[NSUserDefaults standardUserDefaults] objectForKey: @"LNYJekyllPath"];
-		NSString	*	projectName = url.lastPathComponent;
-		self.projectCreationTask = [NSTask taskWithLaunchPath: jekyllPath arguments: @[@"new", projectName] terminationHandlerWithOutput:^(NSTask * _Nonnull sender, NSData * _Nonnull output, NSData * _Nonnull errOutput)
+		if( !self.projectCreationTask )
 		{
-			NSString*	outputStr = [[NSString alloc] initWithData: output encoding:NSUTF8StringEncoding];
-			NSString*	errStr = [[NSString alloc] initWithData: errOutput encoding:NSUTF8StringEncoding];
-			NSLog(@"%@\n%@\ndone.", outputStr, errStr);
-		} progressHandler: nil];
-		NSString	*	dirPath = url.path.stringByDeletingLastPathComponent;
-		[self.projectCreationTask setCurrentDirectoryPath: dirPath];
-		[self.projectCreationTask launch];
-		
-		[self.projectCreationTask waitUntilExit];
-		self.projectCreationTask = nil;
+			NSString	*	jekyllPath = [[NSUserDefaults standardUserDefaults] objectForKey: @"LNYJekyllPath"];
+			NSString	*	projectName = url.lastPathComponent;
+			self.projectCreationTask = [NSTask taskWithLaunchPath: jekyllPath arguments: @[@"new", projectName] terminationHandlerWithOutput:^(NSTask * _Nonnull sender, NSData * _Nonnull output, NSData * _Nonnull errOutput)
+			{
+				NSString*	outputStr = [[NSString alloc] initWithData: output encoding:NSUTF8StringEncoding];
+				NSString*	errStr = [[NSString alloc] initWithData: errOutput encoding:NSUTF8StringEncoding];
+				NSLog(@"%@\n%@\ndone.", outputStr, errStr);
+			} progressHandler: nil];
+			NSString	*	dirPath = url.path.stringByDeletingLastPathComponent;
+			[self.projectCreationTask setCurrentDirectoryPath: dirPath];
+			[self.projectCreationTask launch];
+			
+			[self.projectCreationTask waitUntilExit];
+			self.projectCreationTask = nil;
+		}
 	}
 	else
 	{
@@ -90,6 +93,16 @@
 
 -(IBAction)	buildProject: (id)sender
 {
+	if( !self.fileURL )
+	{
+		[self saveDocumentWithDelegate: self didSaveSelector: @selector(buildProject_Internal) contextInfo: NULL];
+	}
+	else
+		[self buildProject_Internal];
+}
+	
+-(void)	buildProject_Internal
+{
 	if( !self.projectBuildTask )
 	{
 		NSString	*	jekyllPath = [[NSUserDefaults standardUserDefaults] objectForKey: @"LNYJekyllPath"];
@@ -104,6 +117,22 @@
 		[self.projectBuildTask setCurrentDirectoryPath: dirPath];
 		[self.projectBuildTask launch];
 	}
+}
+
+
+-(IBAction)	revealInFinder: (id)sender
+{
+	if( !self.fileURL )
+	{
+		[self saveDocumentWithDelegate: self didSaveSelector: @selector(revealInFinder_Internal) contextInfo: NULL];
+	}
+	else
+		[self revealInFinder_Internal];
+}
+	
+-(void)	revealInFinder_Internal
+{
+	[[NSWorkspace sharedWorkspace] openURL: self.fileURL];
 }
 
 @end

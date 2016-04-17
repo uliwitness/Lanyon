@@ -32,10 +32,22 @@
                             <action selector="buildProject:" target="-2" id="hRR-AU-W28"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VbB-9H-ZiR">
+                        <rect key="frame" x="188" y="332" width="130" height="32"/>
+                        <buttonCell key="cell" type="push" title="Show in Finder" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3eJ-mh-z9F">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="revealInFinder:" target="-2" id="Y1b-6Q-Nn4"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="VbB-9H-ZiR" firstAttribute="centerX" secondItem="gIp-Ho-8D9" secondAttribute="centerX" id="0SO-FO-EId"/>
                     <constraint firstItem="U2p-Ks-Vho" firstAttribute="centerX" secondItem="gIp-Ho-8D9" secondAttribute="centerX" id="Iu8-57-24E"/>
                     <constraint firstItem="U2p-Ks-Vho" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="gvT-Na-c0d"/>
+                    <constraint firstItem="VbB-9H-ZiR" firstAttribute="top" secondItem="U2p-Ks-Vho" secondAttribute="bottom" constant="12" id="vmu-vT-4KW"/>
                 </constraints>
             </view>
             <connections>

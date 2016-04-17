@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="LNYJekyllInstallerWindowController">
+            <connections>
+                <outlet property="gemInstallTaskOutputField" destination="GHS-Lq-dZ6" id="h8Z-mT-UnF"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Jekyll Installer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" topStrut="YES"/>
+            <rect key="contentRect" x="410" y="382" width="480" height="569"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <view key="contentView" id="se5-gp-TjO" userLabel="Content View">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="569"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m2N-RW-2Xz">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="569"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="eJ2-TW-ZPb" userLabel="Installer Pane">
+                                <rect key="frame" x="0.0" y="454" width="480" height="115"/>
+                                <subviews>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="hkT-kt-LU5">
+                                        <rect key="frame" x="18" y="61" width="444" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="440" id="3ew-yD-m2w"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" id="vFd-DO-M1l">
+                                            <font key="font" metaFont="system"/>
+                                            <string key="title">The Jekyll command line tool required for this application to work is not yet installed on this computer. Do you wish to install Jekyll now?</string>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AXg-T6-WVJ">
+                                        <rect key="frame" x="352" y="13" width="114" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Install Jekyll" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hjp-Vv-zgz">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="startGemInstallTask:" target="-2" id="a74-ce-PpJ"/>
+                                            <binding destination="-2" name="enabled" keyPath="installationInProgress" id="S8x-Dk-k0a">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                </dictionary>
+                                            </binding>
+                                            <binding destination="-2" name="hidden" keyPath="installationFinished" previousBinding="S8x-Dk-k0a" id="2Dr-x0-nHX"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yJG-Dq-IJH">
+                                        <rect key="frame" x="391" y="13" width="75" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="31j-Kh-Z7g">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="orderOut:" target="F0z-JX-Cv5" id="UaF-X1-BM3"/>
+                                            <binding destination="-2" name="hidden" keyPath="installationFinished" id="pd6-Ef-S6a">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                </dictionary>
+                                            </binding>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="yJG-Dq-IJH" secondAttribute="trailing" constant="20" id="108-hU-G7x"/>
+                                    <constraint firstItem="hkT-kt-LU5" firstAttribute="leading" secondItem="eJ2-TW-ZPb" secondAttribute="leading" constant="20" id="Faj-TP-PQ2"/>
+                                    <constraint firstItem="hkT-kt-LU5" firstAttribute="top" secondItem="eJ2-TW-ZPb" secondAttribute="top" constant="20" id="PzH-HI-nqv"/>
+                                    <constraint firstAttribute="trailing" secondItem="AXg-T6-WVJ" secondAttribute="trailing" constant="20" id="S10-eK-vhF"/>
+                                    <constraint firstAttribute="bottom" secondItem="AXg-T6-WVJ" secondAttribute="bottom" constant="20" id="YGx-Pq-rAZ"/>
+                                    <constraint firstItem="AXg-T6-WVJ" firstAttribute="top" secondItem="hkT-kt-LU5" secondAttribute="bottom" constant="20" id="aeV-ab-sC4"/>
+                                    <constraint firstAttribute="trailing" secondItem="hkT-kt-LU5" secondAttribute="trailing" constant="20" id="hox-fV-6Hg"/>
+                                    <constraint firstAttribute="bottom" secondItem="yJG-Dq-IJH" secondAttribute="bottom" constant="20" id="nGo-PJ-cBn"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="61A-nJ-aLw" userLabel="Tool Output Pane">
+                                <rect key="frame" x="0.0" y="154" width="480" height="300"/>
+                                <subviews>
+                                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDZ-pm-uJe">
+                                        <rect key="frame" x="-1" y="0.0" width="482" height="300"/>
+                                        <clipView key="contentView" id="bpa-Uv-xtj">
+                                            <rect key="frame" x="1" y="1" width="480" height="298"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textView editable="NO" selectable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="GHS-Lq-dZ6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="480" height="298"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="minSize" width="480" height="298"/>
+                                                    <size key="maxSize" width="480" height="10000000"/>
+                                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <size key="minSize" width="480" height="298"/>
+                                                    <size key="maxSize" width="480" height="10000000"/>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </clipView>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="13l-UU-vfn"/>
+                                        </constraints>
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="FuV-tb-yfH">
+                                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="TYl-BG-V4y">
+                                            <rect key="frame" x="465" y="1" width="16" height="298"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="CDZ-pm-uJe" secondAttribute="trailing" constant="-1" id="4e3-hW-ph2"/>
+                                    <constraint firstAttribute="height" constant="300" id="Gku-cv-XfS"/>
+                                    <constraint firstItem="CDZ-pm-uJe" firstAttribute="leading" secondItem="61A-nJ-aLw" secondAttribute="leading" constant="-1" id="P1g-A6-shY"/>
+                                    <constraint firstItem="CDZ-pm-uJe" firstAttribute="top" secondItem="61A-nJ-aLw" secondAttribute="top" id="hP9-fd-lvo"/>
+                                    <constraint firstAttribute="bottom" secondItem="CDZ-pm-uJe" secondAttribute="bottom" id="iQv-rH-GYX"/>
+                                </constraints>
+                                <connections>
+                                    <binding destination="-2" name="hidden" keyPath="installationInProgress" id="XdI-Sy-qvo">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="JjE-to-u0Y" userLabel="Explanation Collapser Pane">
+                                <rect key="frame" x="0.0" y="121" width="480" height="33"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fj8-My-HLE">
+                                        <rect key="frame" x="39" y="8" width="121" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="What does this do?" id="Qvn-dW-4nf">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="91m-hW-7Zb">
+                                        <rect key="frame" x="0.0" y="30" width="480" height="5"/>
+                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </box>
+                                    <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o7q-e8-4AR">
+                                        <rect key="frame" x="20" y="10" width="13" height="13"/>
+                                        <buttonCell key="cell" type="disclosureTriangle" bezelStyle="disclosure" imagePosition="above" alignment="left" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HX9-LC-R5o">
+                                            <behavior key="behavior" pushIn="YES" changeBackground="YES" changeGray="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <binding destination="veX-dJ-aqk" name="value" keyPath="values.LNYJekyllInstallerWhatDoesThisDoHidden" id="Em7-QF-mBx">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                </dictionary>
+                                            </binding>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="fj8-My-HLE" firstAttribute="centerY" secondItem="o7q-e8-4AR" secondAttribute="centerY" id="0x7-n2-KJH"/>
+                                    <constraint firstAttribute="bottom" secondItem="fj8-My-HLE" secondAttribute="bottom" constant="8" id="Mgg-SB-73m"/>
+                                    <constraint firstItem="o7q-e8-4AR" firstAttribute="leading" secondItem="JjE-to-u0Y" secondAttribute="leading" constant="20" id="NaH-XG-qQ3"/>
+                                    <constraint firstItem="fj8-My-HLE" firstAttribute="leading" secondItem="o7q-e8-4AR" secondAttribute="trailing" constant="8" id="RdI-Fg-9Yp"/>
+                                    <constraint firstItem="o7q-e8-4AR" firstAttribute="top" secondItem="JjE-to-u0Y" secondAttribute="top" constant="10" id="ah3-md-i1r"/>
+                                    <constraint firstAttribute="trailing" secondItem="91m-hW-7Zb" secondAttribute="trailing" id="prI-5L-CoG"/>
+                                    <constraint firstItem="91m-hW-7Zb" firstAttribute="top" secondItem="JjE-to-u0Y" secondAttribute="top" id="q7o-MZ-OQQ"/>
+                                    <constraint firstItem="91m-hW-7Zb" firstAttribute="leading" secondItem="JjE-to-u0Y" secondAttribute="leading" id="qIb-ly-QOY"/>
+                                </constraints>
+                                <connections>
+                                    <binding destination="-2" name="hidden" keyPath="installationInProgress" id="2NR-BW-M3L"/>
+                                </connections>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="nzw-29-PNP" userLabel="Explanation Pane">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="121"/>
+                                <subviews>
+                                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2Z-U5-9TX">
+                                        <rect key="frame" x="-1" y="-1" width="482" height="122"/>
+                                        <clipView key="contentView" id="C7E-om-deg">
+                                            <rect key="frame" x="1" y="1" width="480" height="120"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textView editable="NO" selectable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="qff-Jk-kUW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="480" height="120"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="minSize" width="480" height="120"/>
+                                                    <size key="maxSize" width="480" height="10000000"/>
+                                                    <attributedString key="textStorage">
+                                                        <fragment>
+                                                            <string key="content">This installer will simply ask your computer's Ruby "gem" installer to perform a standard installation of Jekyll.
+
+This application does not contain its own version of Jekyll. It will simply install the same version of Jekyll from the same source everyone else would get it.
+
+Alternately, you can specify where you have already installed a copy of Jekyll yourself in the Lanyon Preferences.</string>
+                                                            <attributes>
+                                                                <font key="NSFont" size="12" name="Helvetica"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <size key="minSize" width="480" height="120"/>
+                                                    <size key="maxSize" width="480" height="10000000"/>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </clipView>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="120" id="YKm-U9-AIk"/>
+                                        </constraints>
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="OPP-X7-dzT">
+                                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="014-SE-O0J">
+                                            <rect key="frame" x="465" y="1" width="16" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="M2Z-U5-9TX" secondAttribute="bottom" constant="-1" id="6e8-2U-SSF"/>
+                                    <constraint firstItem="M2Z-U5-9TX" firstAttribute="leading" secondItem="nzw-29-PNP" secondAttribute="leading" constant="-1" id="JoU-Il-9aB"/>
+                                    <constraint firstItem="M2Z-U5-9TX" firstAttribute="top" secondItem="nzw-29-PNP" secondAttribute="top" id="elf-Nx-mQi"/>
+                                    <constraint firstAttribute="trailing" secondItem="M2Z-U5-9TX" secondAttribute="trailing" constant="-1" id="ohh-gp-h7E"/>
+                                </constraints>
+                                <connections>
+                                    <binding destination="-2" name="hidden2" keyPath="installationInProgress" previousBinding="GHY-Xl-4pu" id="8RQ-zP-7lf">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="veX-dJ-aqk" name="hidden" keyPath="values.LNYJekyllInstallerWhatDoesThisDoHidden" id="GHY-Xl-4pu"/>
+                                </connections>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="61A-nJ-aLw" firstAttribute="leading" secondItem="m2N-RW-2Xz" secondAttribute="leading" id="3mH-3w-ekm"/>
+                            <constraint firstAttribute="trailing" secondItem="61A-nJ-aLw" secondAttribute="trailing" id="6dF-Lg-er8"/>
+                            <constraint firstAttribute="bottom" secondItem="nzw-29-PNP" secondAttribute="bottom" id="7UO-2y-5Ki"/>
+                            <constraint firstItem="JjE-to-u0Y" firstAttribute="leading" secondItem="m2N-RW-2Xz" secondAttribute="leading" id="BcJ-ih-O1o"/>
+                            <constraint firstItem="JjE-to-u0Y" firstAttribute="top" secondItem="61A-nJ-aLw" secondAttribute="bottom" id="jEG-rY-iFO"/>
+                            <constraint firstAttribute="trailing" secondItem="JjE-to-u0Y" secondAttribute="trailing" id="r21-Pc-eJK"/>
+                        </constraints>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="m2N-RW-2Xz" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="cKH-ED-Sgr"/>
+                    <constraint firstAttribute="bottom" secondItem="m2N-RW-2Xz" secondAttribute="bottom" id="fdA-H4-QEs"/>
+                    <constraint firstItem="m2N-RW-2Xz" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="nGq-z6-BKk"/>
+                    <constraint firstAttribute="trailing" secondItem="m2N-RW-2Xz" secondAttribute="trailing" id="oSA-fg-KDx"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="496" y="389.5"/>
+        </window>
+        <userDefaultsController representsSharedInstance="YES" id="veX-dJ-aqk"/>
+    </objects>
+</document>

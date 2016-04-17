@@ -14,6 +14,12 @@
 		551E0DA51CC3C53C008B80E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 551E0DA41CC3C53C008B80E1 /* Assets.xcassets */; };
 		551E0DA81CC3C53C008B80E1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551E0DA61CC3C53C008B80E1 /* MainMenu.xib */; };
 		551E0DB11CC3C5E0008B80E1 /* ULIFolderDocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551E0DB01CC3C5E0008B80E1 /* ULIFolderDocumentController.m */; };
+		551E0DB41CC3C9C7008B80E1 /* NSTask+ULIReadOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 551E0DB31CC3C9C7008B80E1 /* NSTask+ULIReadOutput.m */; };
+		551E0DB61CC3CF00008B80E1 /* LNYInitialDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 551E0DB51CC3CEFF008B80E1 /* LNYInitialDefaults.plist */; };
+		551E0DBA1CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551E0DB81CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.m */; };
+		551E0DBB1CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551E0DB91CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.xib */; };
+		551E0DBE1CC3F77D008B80E1 /* ULIInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551E0DBD1CC3F77D008B80E1 /* ULIInputPanelController.m */; };
+		551E0DC11CC3F8D9008B80E1 /* NSStringDrawing+SizeWithRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 551E0DC01CC3F8D9008B80E1 /* NSStringDrawing+SizeWithRect.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +35,16 @@
 		551E0DA91CC3C53C008B80E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		551E0DAF1CC3C5E0008B80E1 /* ULIFolderDocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ULIFolderDocumentController.h; sourceTree = "<group>"; };
 		551E0DB01CC3C5E0008B80E1 /* ULIFolderDocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ULIFolderDocumentController.m; sourceTree = "<group>"; };
+		551E0DB21CC3C9C7008B80E1 /* NSTask+ULIReadOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTask+ULIReadOutput.h"; path = "../UliKit/NSTask+ULIReadOutput.h"; sourceTree = "<group>"; };
+		551E0DB31CC3C9C7008B80E1 /* NSTask+ULIReadOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTask+ULIReadOutput.m"; path = "../UliKit/NSTask+ULIReadOutput.m"; sourceTree = "<group>"; };
+		551E0DB51CC3CEFF008B80E1 /* LNYInitialDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LNYInitialDefaults.plist; sourceTree = "<group>"; };
+		551E0DB71CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNYJekyllInstallerWindowController.h; sourceTree = "<group>"; };
+		551E0DB81CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNYJekyllInstallerWindowController.m; sourceTree = "<group>"; };
+		551E0DB91CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LNYJekyllInstallerWindowController.xib; sourceTree = "<group>"; };
+		551E0DBC1CC3F77D008B80E1 /* ULIInputPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ULIInputPanelController.h; path = ../UliKit/ULIInputPanelController.h; sourceTree = "<group>"; };
+		551E0DBD1CC3F77D008B80E1 /* ULIInputPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ULIInputPanelController.m; path = ../UliKit/ULIInputPanelController.m; sourceTree = "<group>"; };
+		551E0DBF1CC3F8D9008B80E1 /* NSStringDrawing+SizeWithRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSStringDrawing+SizeWithRect.h"; path = "UliKit/NSStringDrawing+SizeWithRect.h"; sourceTree = SOURCE_ROOT; };
+		551E0DC01CC3F8D9008B80E1 /* NSStringDrawing+SizeWithRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSStringDrawing+SizeWithRect.m"; path = "UliKit/NSStringDrawing+SizeWithRect.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,11 +82,21 @@
 				551E0D9E1CC3C53C008B80E1 /* LNYJekyllFolderDocument.h */,
 				551E0D9F1CC3C53C008B80E1 /* LNYJekyllFolderDocument.m */,
 				551E0DA11CC3C53C008B80E1 /* LNYJekyllFolderDocument.xib */,
+				551E0DB71CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.h */,
+				551E0DB81CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.m */,
+				551E0DB91CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.xib */,
 				551E0DAF1CC3C5E0008B80E1 /* ULIFolderDocumentController.h */,
 				551E0DB01CC3C5E0008B80E1 /* ULIFolderDocumentController.m */,
+				551E0DBC1CC3F77D008B80E1 /* ULIInputPanelController.h */,
+				551E0DBD1CC3F77D008B80E1 /* ULIInputPanelController.m */,
+				551E0DBF1CC3F8D9008B80E1 /* NSStringDrawing+SizeWithRect.h */,
+				551E0DC01CC3F8D9008B80E1 /* NSStringDrawing+SizeWithRect.m */,
+				551E0DB21CC3C9C7008B80E1 /* NSTask+ULIReadOutput.h */,
+				551E0DB31CC3C9C7008B80E1 /* NSTask+ULIReadOutput.m */,
 				551E0DA41CC3C53C008B80E1 /* Assets.xcassets */,
 				551E0DA61CC3C53C008B80E1 /* MainMenu.xib */,
 				551E0DA91CC3C53C008B80E1 /* Info.plist */,
+				551E0DB51CC3CEFF008B80E1 /* LNYInitialDefaults.plist */,
 				551E0D9B1CC3C53C008B80E1 /* Supporting Files */,
 			);
 			path = Lanyon;
@@ -143,8 +169,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				551E0DA51CC3C53C008B80E1 /* Assets.xcassets in Resources */,
+				551E0DBB1CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.xib in Resources */,
 				551E0DA31CC3C53C008B80E1 /* LNYJekyllFolderDocument.xib in Resources */,
 				551E0DA81CC3C53C008B80E1 /* MainMenu.xib in Resources */,
+				551E0DB61CC3CF00008B80E1 /* LNYInitialDefaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,9 +183,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551E0DBE1CC3F77D008B80E1 /* ULIInputPanelController.m in Sources */,
 				551E0DA01CC3C53C008B80E1 /* LNYJekyllFolderDocument.m in Sources */,
 				551E0DB11CC3C5E0008B80E1 /* ULIFolderDocumentController.m in Sources */,
 				551E0D9D1CC3C53C008B80E1 /* main.m in Sources */,
+				551E0DBA1CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.m in Sources */,
+				551E0DC11CC3F8D9008B80E1 /* NSStringDrawing+SizeWithRect.m in Sources */,
+				551E0DB41CC3C9C7008B80E1 /* NSTask+ULIReadOutput.m in Sources */,
 				551E0D9A1CC3C53C008B80E1 /* LNYAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

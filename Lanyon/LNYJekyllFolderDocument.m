@@ -15,6 +15,7 @@
 @property (strong) IBOutlet NSTextView*		toolOutputField;
 @property (strong) IBOutlet NSButton*		serverStartStopButton;
 @property (strong) IBOutlet NSButton*		serverURLButton;
+@property (strong) IBOutlet NSTextField*	postNameField;
 @property (strong) NSTask*					projectCreationTask;
 @property (strong) NSTask*					projectBuildTask;
 @property (strong) NSTask*					serverTask;
@@ -223,6 +224,29 @@
 -(IBAction)	launchServerURL: (id)sender
 {
 	[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: self.serverURLButton.title]];
+}
+
+
+-(IBAction)	createNewPost: (id)sender
+{
+	NSString	*	postName = self.postNameField.stringValue;
+	NSString	*	sanitizedPostName = postName.lowercaseString;
+	sanitizedPostName = [sanitizedPostName stringByReplacingOccurrencesOfString: @" " withString:@"-"];
+	
+	NSDateFormatter	*	dateFmt = [NSDateFormatter new];
+	dateFmt.dateFormat = @"yyyy-MM-dd";
+	NSString		*	dateStr = [dateFmt stringFromDate: [NSDate date]];
+	
+	NSString		*	fileName = [NSString stringWithFormat: @"%@-%@.md", dateStr, sanitizedPostName];
+	NSString		*	filePath = [self.fileURL.path stringByAppendingPathComponent: @"_posts"];
+	filePath = [filePath stringByAppendingPathComponent: fileName];
+	
+	NSURL			*	defaultPostURL = [[NSBundle mainBundle] URLForResource: @"DefaultBlogPost" withExtension: @"md"];
+	NSString		*	contentsString = [NSString stringWithContentsOfURL: defaultPostURL encoding: NSUTF8StringEncoding error: nil];
+	contentsString = [contentsString stringByReplacingOccurrencesOfString: @"#{title}" withString: postName];
+	[contentsString writeToFile: filePath atomically: YES encoding: NSUTF8StringEncoding error: nil];
+	
+	[[NSWorkspace sharedWorkspace] openURL: [NSURL fileURLWithPath: filePath]];
 }
 
 @end

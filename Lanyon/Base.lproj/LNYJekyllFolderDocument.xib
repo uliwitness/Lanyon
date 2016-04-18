@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="LNYJekyllFolderDocument">
             <connections>
+                <outlet property="postNameField" destination="egG-Fm-3QP" id="81a-uo-72s"/>
                 <outlet property="serverStartStopButton" destination="jhP-zX-AsR" id="vOo-hD-enh"/>
                 <outlet property="serverURLButton" destination="UWh-aD-nvQ" id="HJ4-nR-LHm"/>
                 <outlet property="toolOutputField" destination="wCb-Wu-zIf" id="rHQ-lS-VrH"/>
@@ -96,6 +97,52 @@
                             <action selector="launchServerURL:" target="-2" id="QIJ-cT-PNl"/>
                         </connections>
                     </button>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="5T8-MH-LoW">
+                        <rect key="frame" x="54" y="221" width="400" height="57"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yWR-Bg-cIX">
+                                <rect key="frame" x="18" y="20" width="74" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Post Name:" id="tlT-qT-VKs">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="egG-Fm-3QP">
+                                <rect key="frame" x="98" y="17" width="205" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="QoO-xW-XVp">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="createNewPost:" target="-2" id="A0H-F2-LFW"/>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OAd-nQ-xNw">
+                                <rect key="frame" x="305" y="10" width="81" height="32"/>
+                                <buttonCell key="cell" type="push" title="Create" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4zb-mw-gNn">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="createNewPost:" target="-2" id="1JI-mS-jRz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="egG-Fm-3QP" firstAttribute="centerY" secondItem="5T8-MH-LoW" secondAttribute="centerY" id="78U-bL-5ae"/>
+                            <constraint firstItem="yWR-Bg-cIX" firstAttribute="leading" secondItem="5T8-MH-LoW" secondAttribute="leading" constant="20" id="9PX-n9-sZ8"/>
+                            <constraint firstItem="OAd-nQ-xNw" firstAttribute="baseline" secondItem="egG-Fm-3QP" secondAttribute="baseline" id="BX9-E1-QwP"/>
+                            <constraint firstAttribute="width" constant="400" id="H2L-OC-ld5"/>
+                            <constraint firstItem="egG-Fm-3QP" firstAttribute="leading" secondItem="yWR-Bg-cIX" secondAttribute="trailing" constant="8" id="I8v-SL-idJ"/>
+                            <constraint firstAttribute="trailing" secondItem="OAd-nQ-xNw" secondAttribute="trailing" constant="20" id="ZjZ-bh-uwu"/>
+                            <constraint firstItem="OAd-nQ-xNw" firstAttribute="leading" secondItem="egG-Fm-3QP" secondAttribute="trailing" constant="8" id="cEb-BK-crx"/>
+                            <constraint firstItem="egG-Fm-3QP" firstAttribute="baseline" secondItem="yWR-Bg-cIX" secondAttribute="baseline" id="dPV-CB-539"/>
+                            <constraint firstAttribute="bottom" secondItem="egG-Fm-3QP" secondAttribute="bottom" constant="17" id="kjY-Ms-Mgm"/>
+                            <constraint firstItem="egG-Fm-3QP" firstAttribute="top" secondItem="5T8-MH-LoW" secondAttribute="top" constant="18" id="xVW-26-Wqu"/>
+                        </constraints>
+                    </customView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="VbB-9H-ZiR" firstAttribute="centerX" secondItem="gIp-Ho-8D9" secondAttribute="centerX" id="0SO-FO-EId"/>
@@ -105,6 +152,8 @@
                     <constraint firstItem="jhP-zX-AsR" firstAttribute="centerX" secondItem="gIp-Ho-8D9" secondAttribute="centerX" id="Jqt-0Y-6TL"/>
                     <constraint firstAttribute="trailing" secondItem="ktc-yx-jKj" secondAttribute="trailing" constant="-1" id="M3k-2t-YS9"/>
                     <constraint firstItem="UWh-aD-nvQ" firstAttribute="centerX" secondItem="jhP-zX-AsR" secondAttribute="centerX" id="Qkp-GV-fX3"/>
+                    <constraint firstItem="5T8-MH-LoW" firstAttribute="top" secondItem="UWh-aD-nvQ" secondAttribute="bottom" constant="8" id="bfq-cD-CEt"/>
+                    <constraint firstItem="5T8-MH-LoW" firstAttribute="centerX" secondItem="gIp-Ho-8D9" secondAttribute="centerX" id="dtq-y2-qHJ"/>
                     <constraint firstItem="U2p-Ks-Vho" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="gvT-Na-c0d"/>
                     <constraint firstItem="ktc-yx-jKj" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="-1" id="vC6-f9-Mv9"/>
                     <constraint firstItem="VbB-9H-ZiR" firstAttribute="top" secondItem="U2p-Ks-Vho" secondAttribute="bottom" constant="12" id="vmu-vT-4KW"/>
@@ -114,6 +163,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-x8E"/>
             </connections>
+            <point key="canvasLocation" x="192.5" y="335.5"/>
         </window>
     </objects>
 </document>

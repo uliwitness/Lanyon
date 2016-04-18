@@ -20,6 +20,7 @@
 		551E0DBB1CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551E0DB91CC3D1E7008B80E1 /* LNYJekyllInstallerWindowController.xib */; };
 		551E0DBE1CC3F77D008B80E1 /* ULIInputPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551E0DBD1CC3F77D008B80E1 /* ULIInputPanelController.m */; };
 		551E0DC11CC3F8D9008B80E1 /* NSStringDrawing+SizeWithRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 551E0DC01CC3F8D9008B80E1 /* NSStringDrawing+SizeWithRect.m */; };
+		551E0DDD1CC470B6008B80E1 /* DefaultBlogPost.md in Resources */ = {isa = PBXBuildFile; fileRef = 551E0DDB1CC46F07008B80E1 /* DefaultBlogPost.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		551E0DBD1CC3F77D008B80E1 /* ULIInputPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ULIInputPanelController.m; path = ../UliKit/ULIInputPanelController.m; sourceTree = "<group>"; };
 		551E0DBF1CC3F8D9008B80E1 /* NSStringDrawing+SizeWithRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSStringDrawing+SizeWithRect.h"; path = "UliKit/NSStringDrawing+SizeWithRect.h"; sourceTree = SOURCE_ROOT; };
 		551E0DC01CC3F8D9008B80E1 /* NSStringDrawing+SizeWithRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSStringDrawing+SizeWithRect.m"; path = "UliKit/NSStringDrawing+SizeWithRect.m"; sourceTree = SOURCE_ROOT; };
+		551E0DDB1CC46F07008B80E1 /* DefaultBlogPost.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DefaultBlogPost.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				551E0DA41CC3C53C008B80E1 /* Assets.xcassets */,
 				551E0DA91CC3C53C008B80E1 /* Info.plist */,
 				551E0DB51CC3CEFF008B80E1 /* LNYInitialDefaults.plist */,
+				551E0DDB1CC46F07008B80E1 /* DefaultBlogPost.md */,
 				551E0D9B1CC3C53C008B80E1 /* Supporting Files */,
 			);
 			path = Lanyon;
@@ -173,6 +176,7 @@
 				551E0DA31CC3C53C008B80E1 /* LNYJekyllFolderDocument.xib in Resources */,
 				551E0DA81CC3C53C008B80E1 /* MainMenu.xib in Resources */,
 				551E0DB61CC3CF00008B80E1 /* LNYInitialDefaults.plist in Resources */,
+				551E0DDD1CC470B6008B80E1 /* DefaultBlogPost.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -244,9 +244,31 @@
 
 -(IBAction)	createNewPost: (id)sender
 {
+	if( !self.fileURL )
+	{
+		[self saveDocumentWithDelegate: self didSaveSelector: @selector(createNewPost_Internal) contextInfo: NULL];
+	}
+	else
+		[self createNewPost_Internal];
+}
+	
+-(void)	createNewPost_Internal
+{
 	NSString	*	postName = self.postNameField.stringValue;
 	NSString	*	sanitizedPostName = postName.lowercaseString;
-	sanitizedPostName = [sanitizedPostName stringByReplacingOccurrencesOfString: @" " withString:@"-"];
+	sanitizedPostName = [sanitizedPostName stringByReplacingOccurrencesOfString: @"'" withString: @""];	// Reads better with apostrophes not being dashes.
+	sanitizedPostName = [sanitizedPostName stringByReplacingOccurrencesOfString: @"‘" withString: @""];	// Reads better with apostrophes not being dashes.
+	sanitizedPostName = [sanitizedPostName stringByReplacingOccurrencesOfString: @"’" withString: @""];	// Reads better with apostrophes not being dashes.
+	sanitizedPostName = [sanitizedPostName stringByReplacingOccurrencesOfString: @"\"" withString: @""];	// Reads better with quotes not being dashes.
+	sanitizedPostName = [sanitizedPostName stringByReplacingOccurrencesOfString: @"“" withString: @""];	// Reads better with quotes not being dashes.
+	sanitizedPostName = [sanitizedPostName stringByReplacingOccurrencesOfString: @"”" withString: @""];	// Reads better with quotes not being dashes.
+	sanitizedPostName = [sanitizedPostName stringByReplacingOccurrencesOfString: @"«" withString: @""];	// Reads better with quotes not being dashes.
+	sanitizedPostName = [sanitizedPostName stringByReplacingOccurrencesOfString: @"»" withString: @""];	// Reads better with quotes not being dashes.
+	sanitizedPostName = [[sanitizedPostName componentsSeparatedByCharactersInSet: [[NSCharacterSet alphanumericCharacterSet] invertedSet]] componentsJoinedByString: @"-"];	// Replace everything else non-ASCII with dashes.
+	sanitizedPostName = [[NSString alloc] initWithData: [sanitizedPostName dataUsingEncoding: NSASCIIStringEncoding allowLossyConversion: YES] encoding:NSASCIIStringEncoding];	// Take all higher-order characters down to ASCII.
+	sanitizedPostName = [sanitizedPostName stringByTrimmingCharactersInSet: [[NSCharacterSet alphanumericCharacterSet] invertedSet]];	// Remove any leading/trailing dashes, looks better.
+	for( int i = 0; i < 4; i++ )	// Do this several times in case we have quadruple dashes or worse.
+		sanitizedPostName = [sanitizedPostName stringByReplacingOccurrencesOfString: @"--" withString: @"-"];	// Reads better with single instead of double dashes.
 	
 	NSDateFormatter	*	dateFmt = [NSDateFormatter new];
 	dateFmt.dateFormat = @"yyyy-MM-dd";

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: #{title}
-published: false
+published: #{ispublished}
 categories:
 ---
 

@@ -7,6 +7,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="LNYJekyllFolderDocument">
             <connections>
+                <outlet property="serverStartStopButton" destination="jhP-zX-AsR" id="vOo-hD-enh"/>
+                <outlet property="serverURLButton" destination="UWh-aD-nvQ" id="HJ4-nR-LHm"/>
                 <outlet property="toolOutputField" destination="wCb-Wu-zIf" id="rHQ-lS-VrH"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
@@ -43,6 +45,16 @@
                             <action selector="revealInFinder:" target="-2" id="Y1b-6Q-Nn4"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jhP-zX-AsR">
+                        <rect key="frame" x="197" y="299" width="113" height="32"/>
+                        <buttonCell key="cell" type="push" title="Start Server" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oxG-QT-TC9">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="launchServer:" target="-2" id="YWw-d5-OwA"/>
+                        </connections>
+                    </button>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ktc-yx-jKj">
                         <rect key="frame" x="-1" y="-1" width="509" height="135"/>
                         <clipView key="contentView" id="BnO-Wg-rY0">
@@ -74,15 +86,29 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UWh-aD-nvQ">
+                        <rect key="frame" x="202" y="286" width="103" height="14"/>
+                        <buttonCell key="cell" type="square" title="http://localhost:4000" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="25g-71-Rea">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="11" name="Helvetica"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="launchServerURL:" target="-2" id="QIJ-cT-PNl"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="VbB-9H-ZiR" firstAttribute="centerX" secondItem="gIp-Ho-8D9" secondAttribute="centerX" id="0SO-FO-EId"/>
+                    <constraint firstItem="jhP-zX-AsR" firstAttribute="top" secondItem="VbB-9H-ZiR" secondAttribute="bottom" constant="12" id="A5T-lf-n0X"/>
                     <constraint firstItem="U2p-Ks-Vho" firstAttribute="centerX" secondItem="gIp-Ho-8D9" secondAttribute="centerX" id="Iu8-57-24E"/>
                     <constraint firstAttribute="bottom" secondItem="ktc-yx-jKj" secondAttribute="bottom" constant="-1" id="JCm-la-7UM"/>
+                    <constraint firstItem="jhP-zX-AsR" firstAttribute="centerX" secondItem="gIp-Ho-8D9" secondAttribute="centerX" id="Jqt-0Y-6TL"/>
                     <constraint firstAttribute="trailing" secondItem="ktc-yx-jKj" secondAttribute="trailing" constant="-1" id="M3k-2t-YS9"/>
+                    <constraint firstItem="UWh-aD-nvQ" firstAttribute="centerX" secondItem="jhP-zX-AsR" secondAttribute="centerX" id="Qkp-GV-fX3"/>
                     <constraint firstItem="U2p-Ks-Vho" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="20" id="gvT-Na-c0d"/>
                     <constraint firstItem="ktc-yx-jKj" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="-1" id="vC6-f9-Mv9"/>
                     <constraint firstItem="VbB-9H-ZiR" firstAttribute="top" secondItem="U2p-Ks-Vho" secondAttribute="bottom" constant="12" id="vmu-vT-4KW"/>
+                    <constraint firstItem="UWh-aD-nvQ" firstAttribute="top" secondItem="jhP-zX-AsR" secondAttribute="bottom" constant="6" id="wCn-58-lAL"/>
                 </constraints>
             </view>
             <connections>

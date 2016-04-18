@@ -183,8 +183,7 @@
 		NSString	*	jekyllPath = [[NSUserDefaults standardUserDefaults] objectForKey: @"LNYJekyllPath"];
 		self.serverTask = [NSTask taskWithLaunchPath: jekyllPath arguments: @[ @"serve" ] terminationHandlerWithOutput: ^(NSTask * _Nonnull sender, NSData * _Nonnull output, NSData * _Nonnull errOutput)
 		{
-			[self.serverStartStopButton setTitle: @"Start Server"];
-			self.serverTask = nil;
+			[self performSelectorOnMainThread: @selector(restoreServerButtonToStartState) withObject: nil waitUntilDone: NO];
 		}
 		progressHandler: ^(NSTask * _Nonnull sender, NSData * _Nullable output, NSData * _Nullable errOutput)
 		{
@@ -201,8 +200,7 @@
 				if( urlEndRange.location != NSNotFound )
 				{
 					NSString	*	urlString = [outputAsString substringWithRange: NSMakeRange(labelRange.location,urlEndRange.location -labelRange.location)];
-					[self.serverURLButton setTitle: urlString];
-					[self.serverURLButton setHidden: NO];
+					[self performSelectorOnMainThread: @selector(showServerURLButtonWithTitle:) withObject: urlString waitUntilDone: NO];
 				}
 			}
 		}];
@@ -218,6 +216,23 @@
 		[self.serverTask terminate];
 		[self.serverURLButton setHidden: YES];
 	}
+}
+
+
+-(void)	restoreServerButtonToStartState
+{
+	[self.serverStartStopButton setTitle: @"Start Server"];
+	self.serverTask = nil;
+
+	NSMutableAttributedString	*	outputAttrStr = [[NSMutableAttributedString alloc] initWithString:@"Server stopped.\n" attributes: @{ NSFontAttributeName: [NSFont userFixedPitchFontOfSize: 10.0], NSForegroundColorAttributeName: [NSColor blackColor] }];
+	[self.toolOutputField.textStorage appendAttributedString: outputAttrStr];
+}
+
+
+-(void)	showServerURLButtonWithTitle: (NSString*)newURL
+{
+	[self.serverURLButton setTitle: newURL];
+	[self.serverURLButton setHidden: NO];
 }
 
 
@@ -244,6 +259,7 @@
 	NSURL			*	defaultPostURL = [[NSBundle mainBundle] URLForResource: @"DefaultBlogPost" withExtension: @"md"];
 	NSString		*	contentsString = [NSString stringWithContentsOfURL: defaultPostURL encoding: NSUTF8StringEncoding error: nil];
 	contentsString = [contentsString stringByReplacingOccurrencesOfString: @"#{title}" withString: postName];
+	contentsString = [contentsString stringByReplacingOccurrencesOfString: @"#{ispublished}" withString: [[NSUserDefaults standardUserDefaults] boolForKey: @"LNYNewPostIsDraft"] ? @"false" : @"true"];
 	[contentsString writeToFile: filePath atomically: YES encoding: NSUTF8StringEncoding error: nil];
 	
 	[[NSWorkspace sharedWorkspace] openURL: [NSURL fileURLWithPath: filePath]];
